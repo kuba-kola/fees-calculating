@@ -64,7 +64,7 @@ Commission fee - 0.3% from amount, but not less than 0.50 EUR for operation.
 
 After calculating commission fee, it's rounded to the smallest currency item (for example, for EUR currency - cents) to upper bound (ceiled). For example, 0.023 EUR should be rounded to 3 Euro cents.
 
-## Input data
+### Input data
 
 Input data is given in JSON file. Performed operations are given in that file. In each object following data is provided:
 
