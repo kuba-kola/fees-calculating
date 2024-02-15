@@ -83,7 +83,7 @@ Input data is given in JSON file. Performed operations are given in that file. I
 
 All operations are ordered by their date ascendingly.
 
-## Expected Result
+### Expected Result
 
 AAs a single argument program must accept a path to the input file.
 
@@ -91,7 +91,7 @@ Program must output result to stdout.
 
 Result - calculated commission fees for each operation. In each line only final calculated commission fee must be provided without currency.
 
-# Example Data
+### Example Data
 
 ```
 ➜  cat input.json
