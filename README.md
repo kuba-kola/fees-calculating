@@ -20,13 +20,11 @@ An app to manage the cash in your bank account. Users can use the app for conven
   4. [Testing](#question-testing)
 
   5. [Coding Styleguides](#writing_hand-coding-styleguides)
-  
-  6. [Development practices](#nerd_face-development-practices)
 
 
 ## :exclamation: Baseline requirements
 
-Users can go to a branch to <code>cash in</code> & <code>cash out</code> from bank account. There are also commission fees for both <code>cash</code> in and <code>cash out</code>. Only supported currency is EUR.
+Users can go to a branch to <code>cash in</code> & <code>cash out</code> from bank account. There are also commission fees for both <code>cash in</code> and <code>cash out</code>. Only supported currency is EUR.
 
 ### For Cash In
 
