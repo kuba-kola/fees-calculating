@@ -1,25 +1,16 @@
 # Commission fees
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-[Here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) you can find some information on how to perform common tasks.
-
-
-## :hash: Description
-
 An app to manage the cash in your bank account. Users can use the app for convenient cash deposits and withdrawals at bank branches. The application supports EUR currency only.
 
 ## :blue_book: Table of contents
 
   1. [Baseline requirements](#exclamation-baseline-requirements)
 
-  2. [Technology stack](#computer-technology-stack)
+  2. [Prerequisites and Setup](#wrench-prerequisites-and-setup)
 
-  3. [Prerequisites and Setup](#wrench-prerequisites-and-setup)
+  3. [Testing](#question-testing)
 
-  4. [Testing](#question-testing)
-
-  5. [Coding Styleguides](#writing_hand-coding-styleguides)
+  4. [Coding Styleguides](#writing_hand-coding-styleguides)
 
 
 ## :exclamation: Baseline requirements
@@ -117,13 +108,7 @@ Result - calculated commission fees for each operation. In each line only final 
 0.00
 ```
 
-## :computer: Technology stack
-
-- [React 18.2.0](https://reactjs.org/)
-- [Node 17.9.1](https://nodejs.org/en/)
-
 ## :wrench: Prerequisites and Setup
-
 
 To install all dependencies simply run:
 
