@@ -12,7 +12,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node index.js input.json",
+    "start": "node app.js input.json",
     "test": "react-scripts test"
   },
   "eslintConfig": {
