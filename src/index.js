@@ -1,3 +1,4 @@
+const { config } = require('./config');
 const {
   calculateCashInCommission,
   calculateCashOutNaturalCommission,
@@ -12,11 +13,18 @@ const calculateCommission = (operation, config) => {
 
   switch (type) {
     case 'cash_in':
-      return calculateCashInCommission(amount, cashIn.maxCommission);
+      return calculateCashInCommission(amount, cashIn.max.amount);
     case 'cash_out':
-      return user_type === 'natural' ?
-        calculateCashOutNaturalCommission(amount, cashOutNatural.weekLimit, cashOutNatural.weekOperations) :
-        calculateCashOutJuridicalCommission(amount, cashOutJuridical.minCommission);
+      return user_type === 'natural'
+        ? calculateCashOutNaturalCommission(
+          amount,
+          cashOutNatural.week_limit.amount,
+          cashOutNatural.weekOperations
+        )
+        : calculateCashOutJuridicalCommission(
+          amount,
+          cashOutJuridical.min.amount
+        );
     default:
       console.error('Unknown operation type:', type);
       return null;
@@ -32,13 +40,8 @@ const calculateResult = (inputData, config) => {
 
 const feesCalculating = (inputFilePath) => {
   const inputData = readInputFromFile(inputFilePath);
-  const config = {
-    cashIn: { maxCommission: 5 },
-    cashOutNatural: { weekLimit: 1000, freeLimit: 1000, weekOperations: [] },
-    cashOutJuridical: { minCommission: 0.5 }
-  };
   const result = calculateResult(inputData, config);
-  result.forEach(commission => console.log("commission", commission));
+  result.forEach(commission => console.log(commission));
 };
 
 module.exports = { feesCalculating };
