@@ -1,10 +1,8 @@
-const { getWeek } = require("./dates");
+const { getWeek } = require("../dates");
 
 const roundToInteger = (value) => (Math.ceil(value * 100) / 100).toFixed(2);
 
-const calculateCommissions = (amount, rate) => {
-    return Math.ceil(amount * rate) / 100;
-}
+const calculateCommissions = (amount, rate) => Math.ceil(amount * rate) / 100;
 
 const calculateCashInCommission = (amount, rate, maxCommission) => {
     const commission = calculateCommissions(amount, rate);

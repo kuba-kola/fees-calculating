@@ -9,7 +9,7 @@ const feesCalculating = (inputFilePath) => {
   const inputData = readInputFromFile(inputFilePath);
   const result = calculateResult(inputData, config);
 
-  result.forEach((commission) =>
+  return result.forEach((commission) =>
     console.log(roundToInteger(commission))
   );
 };
