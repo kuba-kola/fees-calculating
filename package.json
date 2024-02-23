@@ -1,11 +1,14 @@
 {
   "name": "commission_fees",
   "version": "0.1.0",
-  "private": true,
+  "main": "app.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "moment": "^2.30.1",
     "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4"
   },
   "scripts": {
     "start": "node app.js input.json",
@@ -14,7 +17,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "airbnb"
     ]
   },
   "browserslist": {
