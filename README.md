@@ -5,12 +5,14 @@ An app to manage the cash in your bank account. Users can use the app for conven
 ## :blue_book: Table of contents
 
   1. [Baseline requirements](#exclamation-baseline-requirements)
+  
+  2. [Additional libraries](#open_book-additional-libraries)
 
-  2. [Prerequisites and Setup](#wrench-prerequisites-and-setup)
+  3. [Prerequisites and Setup](#wrench-prerequisites-and-setup)
 
-  3. [Testing](#question-testing)
+  4. [Testing](#question-testing)
 
-  4. [Coding Styleguides](#writing_hand-coding-styleguides)
+  5. [Coding Styleguides](#writing_hand-coding-styleguides)
 
 
 ## :exclamation: Baseline requirements
@@ -74,7 +76,7 @@ All operations are ordered by their date ascendingly.
 
 ### Expected Result
 
-AAs a single argument program must accept a path to the input file.
+As a single argument program must accept a path to the input file.
 
 Program must output result to stdout.
 
@@ -107,6 +109,10 @@ Result - calculated commission fees for each operation. In each line only final 
 0.00
 0.00
 ```
+
+## :open_book: Additional libraries
+
+- [moment](https://momentjs.com/)
 
 ## :wrench: Prerequisites and Setup
 
