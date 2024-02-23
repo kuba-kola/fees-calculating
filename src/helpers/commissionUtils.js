@@ -1,34 +1,81 @@
 const { getWeek } = require("./dates");
 
-const roundToInteger = (value) => Math.ceil(value * 100) / 100;
+const roundToInteger = (value) => (Math.ceil(value * 100) / 100).toFixed(2);
 
-const calculateCashInCommission = (amount, maxCommission) => {
-    const commission = amount * 0.0003;
+const calculateCommissions = (amount, rate) => {
+    return Math.ceil(amount * rate) / 100;
+}
+
+const calculateCashInCommission = (amount, rate, maxCommission) => {
+    const commission = calculateCommissions(amount, rate);
     return commission > maxCommission ? maxCommission : commission;
 };
 
-const calculateCashOutJuridicalCommission = (amount, minCommission) => {
-    const commission = amount * 0.003;
+const calculateCashOutJuridicalCommission = (amount, rate, minCommission) => {
+    const commission = calculateCommissions(amount, rate);
     return commission < minCommission ? minCommission : commission;
 };
 
-const calculateCashOutNaturalCommission = (operation, weekLimit, weekOperations) => {
-    const commissionRate = 0.003;
+const calculateResult = (transactions, config) => {
+    const { cashIn, cashOutNatural, cashOutJuridical } = config;
+    const userWeeklyAmounts = {};
+    let commissionAmounts = [];
 
-    const currentDate = new Date(operation.date);
-    const currentWeek = getWeek(currentDate);
+    transactions.forEach(transaction => {
+        const { type, operation: { amount }, user_type } = transaction;
+        const isCashIn = type === "cash_in";
+        const isCashOutJuridical = type === "cash_out" && user_type === "juridical";
+        const isCashOutNatural = type === "cash_out" && user_type === "natural";
 
-    const totalCashOutThisWeek = weekOperations
-        .filter(op => op.user_id === operation.user_id && op.type === 'cash_out' && new Date(op.date).getWeek() === currentWeek)
-        .reduce((acc, op) => acc + op.operation.amount, 0);
+        if (isCashIn) {
+            const commission = calculateCashInCommission(
+                amount,
+                cashIn.percents,
+                cashIn.max.amount
+            );
 
-    const freeLimitExceeded = totalCashOutThisWeek > weekLimit;
+            commissionAmounts.push(commission);
+        } else if (isCashOutJuridical) {
+            const commission = calculateCashOutJuridicalCommission(
+                amount,
+                cashOutJuridical.percents,
+                cashOutJuridical.min.amount,
+            );
 
-    if (freeLimitExceeded) {
-        return operation.amount * commissionRate;
-    };
+            commissionAmounts.push(commission);
+        } else if (isCashOutNatural) {
+            const userId = transaction.user_id;
+            const transactionWeek = getWeek(transaction.date);
 
-    return 0;
+            if (!userWeeklyAmounts[userId]) {
+                userWeeklyAmounts[userId] = {};
+            };
+
+            if (!userWeeklyAmounts[userId][transactionWeek]) {
+                userWeeklyAmounts[userId][transactionWeek] = 0;
+            };
+
+            const weeklyAmount = userWeeklyAmounts[userId][transactionWeek];
+
+            if (weeklyAmount + transaction.operation.amount > cashOutNatural.week_limit.amount) {
+                if (userWeeklyAmounts[userId].exceededLimit) {
+                    const commission = calculateCommissions(transaction.operation.amount, cashOutNatural.percents);
+                    commissionAmounts.push(commission);
+                } else {
+                    const exceededAmount = weeklyAmount + transaction.operation.amount - cashOutNatural.week_limit.amount;
+                    const commission = calculateCommissions(exceededAmount, cashOutNatural.percents);
+                    commissionAmounts.push(commission);
+                    userWeeklyAmounts[userId].exceededLimit = true;
+                }
+            } else {
+                commissionAmounts.push(0);
+            }
+
+            userWeeklyAmounts[userId][transactionWeek] += transaction.operation.amount;
+        }
+    });
+
+    return commissionAmounts;
 };
 
 
@@ -36,5 +83,6 @@ module.exports = {
     roundToInteger,
     calculateCashInCommission,
     calculateCashOutJuridicalCommission,
-    calculateCashOutNaturalCommission,
+    calculateCommissions,
+    calculateResult,
 };
