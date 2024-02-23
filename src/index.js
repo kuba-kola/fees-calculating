@@ -9,9 +9,11 @@ const feesCalculating = (inputFilePath) => {
   const inputData = readInputFromFile(inputFilePath);
   const result = calculateResult(inputData, config);
 
-  return result.forEach((commission) =>
+  result.forEach((commission) =>
     console.log(roundToInteger(commission))
   );
+
+  return result
 };
 
 module.exports = { feesCalculating };
