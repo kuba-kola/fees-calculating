@@ -6,8 +6,8 @@ const {
     calculateCashOutJuridicalCommission,
     calculateCommissions,
     calculateResult,
-} = require(".");
-const filePath = "./input.json";
+} = require('.');
+const filePath = './input.json';
 
 const inputData = readInputFromFile(filePath);
 const roundInteger = () => roundToInteger(0, 379);
@@ -18,7 +18,7 @@ const finalResult = () => calculateResult(inputData, config);
 
 describe('Number rounding', () => {
     it('returns a rounded number to two digits after the period in string format', () => {
-        expect(roundInteger()).toEqual("0.00");
+        expect(roundInteger()).toEqual('0.00');
     });
 });
 
@@ -35,7 +35,7 @@ describe('Calculating cash in commision', () => {
 });
 
 describe('Calculating cash out commision for juridical user_type', () => {
-    it('returns calculated fee for transactions with type "cash-in"', () => {
+    it('returns calculated fee for transactions with type "cash-out"', () => {
         expect(cashOutJuridicalCommission()).toEqual(5);
     });
 });

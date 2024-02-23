@@ -1,4 +1,4 @@
-const { getWeek } = require("../dates");
+const { getWeek } = require('../dates');
 
 const roundToInteger = (value) => (Math.ceil(value * 100) / 100).toFixed(2);
 
@@ -21,9 +21,9 @@ const calculateResult = (transactions, config) => {
 
     transactions.forEach(transaction => {
         const { type, operation: { amount }, user_type } = transaction;
-        const isCashIn = type === "cash_in";
-        const isCashOutJuridical = type === "cash_out" && user_type === "juridical";
-        const isCashOutNatural = type === "cash_out" && user_type === "natural";
+        const isCashIn = type === 'cash_in';
+        const isCashOutJuridical = type === 'cash_out' && user_type === 'juridical';
+        const isCashOutNatural = type === 'cash_out' && user_type === 'natural';
 
         if (isCashIn) {
             const commission = calculateCashInCommission(

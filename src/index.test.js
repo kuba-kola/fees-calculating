@@ -1,5 +1,5 @@
 const { feesCalculating } = require('.');
-const filePath = "input.json";
+const filePath = 'input.json';
 
 describe('Console output of calculation results', () => {
   it('returns each commission in order by retrieving it from the array', () => {

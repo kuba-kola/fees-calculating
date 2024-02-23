@@ -1,5 +1,5 @@
-const { readInputFromFile } = require(".");
-const filePath = "./input.json";
+const { readInputFromFile } = require('.');
+const filePath = './input.json';
 
 const data = readInputFromFile(filePath);
 
@@ -11,7 +11,7 @@ describe('Read input data from file', () => {
             expect(transaction.user_type).toMatch(/^(natural|juridical)$/);
             expect(transaction.type).toMatch(/^(cash_in|cash_out)$/);
             expect(transaction.operation.amount).toEqual(expect.any(Number));
-            expect(transaction.operation.currency).toEqual("EUR");
+            expect(transaction.operation.currency).toEqual('EUR');
         });
     });
 });
