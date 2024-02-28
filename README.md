@@ -23,8 +23,14 @@ Users can go to a branch to <code>cash in</code> & <code>cash out</code> from ba
 
 Commission fee - 0.03% from total amount, but no more than 5.00 EUR.
 
-```json
-{"percents":0.03,"max":{"amount":5,"currency":"EUR"}}
+```js
+{
+    percents: 0.03,
+    max: {
+        amount: 5,
+        currency: "EUR"
+    }
+}
 ```
 
 ### For Cash Out
@@ -43,8 +49,8 @@ If total cash out amount is exceeded - commission is calculated only from exceed
 {
     percents: 0.3,
     week_limit: {
-        amount:1000,
-        currency:"EUR"
+        amount: 1000,
+        currency: "EUR"
     }
 }
 ```
@@ -57,8 +63,8 @@ Commission fee - 0.3% from amount, but not less than 0.50 EUR for operation.
 {
     percents: 0.3,
     min: {
-        amount:0.5,
-        currency:"EUR"
+        amount: 0.5,
+        currency: "EUR"
     }
 }
 ```
