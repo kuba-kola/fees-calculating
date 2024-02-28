@@ -39,16 +39,28 @@ Default commission fee - 0.3% from cash out amount.
 
 If total cash out amount is exceeded - commission is calculated only from exceeded amount (that is, for 1000.00 EUR there is still no commission fee).
 
-```json
-{"percents":0.3,"week_limit":{"amount":1000,"currency":"EUR"}}
+```js
+{
+    percents: 0.3,
+    week_limit: {
+        amount:1000,
+        currency:"EUR"
+    }
+}
 ```
 
 #### Legal persons
 
 Commission fee - 0.3% from amount, but not less than 0.50 EUR for operation.
 
-```json
-{"percents":0.3,"min":{"amount":0.5,"currency":"EUR"}}
+```js
+{
+    percents: 0.3,
+    min: {
+        amount:0.5,
+        currency:"EUR"
+    }
+}
 ```
 
 ### Rounding
